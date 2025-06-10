@@ -1,0 +1,14 @@
+name: Expense App
+package: Custom
+type: module
+core_version_requirement: ">=10 <11"
+dependencies:
+  - drupal:field
+  - drupal:paragraphs
+  - drupal:layout_builder
+  - drupal:views
+  - drupal:block
+  - drupal:image
+  - drupal:comment
+  - drupal:config
+  - drupal:user

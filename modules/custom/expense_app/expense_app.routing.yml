@@ -1,0 +1,7 @@
+expense_app.settings:
+  path: '/admin/config/system/expense-app'
+  defaults:
+    _form: '\Drupal\expense_app\Form\KmRateConfigForm'
+    _title: 'Expense settings'
+  requirements:
+    _permission: 'administer expense claims'

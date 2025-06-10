@@ -1,0 +1,61 @@
+<?php
+/**
+ * @file
+ * Install file for Expense App.
+ */
+
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\field\Entity\FieldConfig;
+use Drupal\paragraphs\Entity\ParagraphsType;
+
+/**
+ * Implements hook_install().
+ */
+function expense_app_install() {
+  // Create paragraph type product_line.
+  if (!ParagraphsType::load('product_line')) {
+    $paragraph = ParagraphsType::create([
+      'id' => 'product_line',
+      'label' => 'Product line',
+    ]);
+    $paragraph->save();
+  }
+
+  // Fields for product_line paragraph.
+  $fields = [
+    'field_product_title' => ['type' => 'string', 'label' => 'Product title'],
+    'field_product_amount' => ['type' => 'decimal', 'label' => 'Amount'],
+    'field_product_vat' => ['type' => 'decimal', 'label' => 'VAT'],
+  ];
+  foreach ($fields as $name => $info) {
+    if (!FieldStorageConfig::loadByName('paragraph', $name)) {
+      FieldStorageConfig::create([
+        'field_name' => $name,
+        'entity_type' => 'paragraph',
+        'type' => $info['type'],
+      ])->save();
+    }
+    if (!FieldConfig::loadByName('paragraph', 'product_line', $name)) {
+      FieldConfig::create([
+        'field_name' => $name,
+        'entity_type' => 'paragraph',
+        'bundle' => 'product_line',
+        'label' => $info['label'],
+      ])->save();
+    }
+  }
+
+  // Create expense claim types: bon and reis.
+  $types = ['bon' => 'Bon', 'reis' => 'Reis'];
+  foreach ($types as $id => $label) {
+    if (!\Drupal::entityTypeManager()->getStorage('expense_claim_type')->load($id)) {
+      \Drupal::entityTypeManager()->getStorage('expense_claim_type')->create([
+        'id' => $id,
+        'label' => $label,
+      ])->save();
+    }
+  }
+
+  // Default km rate.
+  \Drupal::configFactory()->getEditable('expense_app.settings')->set('km_rate', 0.23)->save();
+}
