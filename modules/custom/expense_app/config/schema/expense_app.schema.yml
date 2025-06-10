@@ -1,0 +1,7 @@
+expense_app.settings:
+  type: config_object
+  label: 'Expense app settings'
+  mapping:
+    km_rate:
+      type: float
+      label: 'Kilometer rate'

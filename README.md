@@ -39,3 +39,7 @@ This repository provides instructions for setting up a Drupal 11 environment wit
 Your Drupal 11 site will be available on <http://localhost:8080> with the Gin admin theme and login page.
 
 
+
+## Custom module: expense_app
+
+This repository also contains a custom module `expense_app` built by VDMi. Copy the `modules/custom/expense_app` folder into your Drupal 10 installation to enable expense claim management with OCR integration and kilometre allowance calculation.
