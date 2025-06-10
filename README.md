@@ -37,5 +37,3 @@ This repository provides instructions for setting up a Drupal 11 environment wit
    ```
 
 Your Drupal 11 site will be available on <http://localhost:8080> with the Gin admin theme and login page.
-
-

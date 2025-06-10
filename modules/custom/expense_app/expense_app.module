@@ -1,0 +1,18 @@
+<?php
+/**
+ * @file
+ * Expense App module.
+ */
+
+use Drupal\Core\DependencyInjection\ContainerBuilder;
+use Drupal\Core\Entity\EntityTypeInterface;
+
+/**
+ * Implements hook_entity_type_build().
+ * Adds layout builder to expense claims.
+ */
+function expense_app_entity_type_build(array &$entity_types) {
+  if (isset($entity_types['expense_claim'])) {
+    $entity_types['expense_claim']->set('layout_builder', TRUE);
+  }
+}

@@ -1,0 +1,6 @@
+expense_app.settings:
+  title: 'Expense settings'
+  description: 'Configure kilometer rate.'
+  parent: system.admin_config_system
+  route_name: expense_app.settings
+  weight: 100
