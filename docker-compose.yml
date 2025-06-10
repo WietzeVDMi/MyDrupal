@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  drupal:
+    image: drupal:11
+    ports:
+      - "8080:80"
+    volumes:
+      - ./mysite:/var/www/html
+    environment:
+      - PHP_MEMORY_LIMIT=512M
